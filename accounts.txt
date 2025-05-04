@@ -1,0 +1,20 @@
+Account Number: 1
+Name: Saneeth
+Email: alasaneeth22@gmail.com
+NIC: 991323538v
+Phone: 0740822580
+Username: admin
+Password: password
+Balance: 1500.0
+Transactions: Account created with initial deposit of 1500.0
+
+Account Number: 2
+Name: amani
+Email: alaamani@gmail.com
+NIC: 9965856321
+Phone: 569874582
+Username: amani
+Password: amani
+Balance: 2500.0
+Transactions: Account created with initial deposit of 2500.0
+
