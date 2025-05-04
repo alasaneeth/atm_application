@@ -114,7 +114,7 @@ def create_new_account():
 
 # Save account details to a file
 def save_account_details():
-    with open("accounts.txt", "w") as file:
+    with open("accounts.txt", "a") as file:
         for accNo, acc in accounts.items():
             file.write(f"Account Number: {accNo}\n")
             file.write(f"Name: {acc['name']}\n")
@@ -122,6 +122,7 @@ def save_account_details():
             file.write(f"NIC: {acc['nic']}\n")
             file.write(f"Phone: {acc['phone']}\n")
             file.write(f"Balance: {acc['balance']}\n")
+            file.write("\n")
     print("Accounts saved to file.")
 
     # Save Transaction History
@@ -130,7 +131,8 @@ def save_transaction_history(account_number,Transaction_type,amount):
             for accNo, acc in accounts.items():
                 file.write(f"Account Number: {account_number}\n")
                 file.write(f"Transaction Name: {Transaction_type}\n")
-                file.write(f"Email: {amount}\n")
+                file.write(f"Amount: {amount}\n")
+                file.write("\n")
         print("Transaction History is saved Successfully.")
 
 
