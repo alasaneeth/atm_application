@@ -125,15 +125,32 @@ def save_account_details():
             file.write("\n")
     print("Accounts saved to file.")
 
-    # Save Transaction History
-def save_transaction_history(account_number,Transaction_type,amount):
+# Save Transaction History only once to avoid duplicates
+def save_transaction_history(account_number, Transaction_type, amount):
+    # Read current transaction history to avoid duplicates
+    existing_transactions = []
+    if os.path.exists("transactionHistory.txt"):
+        with open("transactionHistory.txt", "r") as file:
+            existing_transactions = file.readlines()
+
+    # Check if the transaction for this account already exists
+    transaction_found = False
+    for line in existing_transactions:
+        if f"Account Number: {account_number}" in line and f"Transaction Name: {Transaction_type}" in line:
+            transaction_found = True
+            break
+
+    if not transaction_found:
+        # Save transaction only if it doesn't exist already
         with open("transactionHistory.txt", "a") as file:
-            for accNo, acc in accounts.items():
-                file.write(f"Account Number: {account_number}\n")
-                file.write(f"Transaction Name: {Transaction_type}\n")
-                file.write(f"Amount: {amount:.2f}\n")
-                file.write("\n")
-        print("Transaction History is saved Successfully.")
+            file.write(f"Account Number: {account_number}\n")
+            file.write(f"Transaction Name: {Transaction_type}\n")
+            file.write(f"Amount: {amount:.2f}\n")
+            file.write("\n")
+        print("Transaction History is saved successfully.")
+    else:
+        print("This transaction already exists in the history.")
+
 
 
 # Load existing account details from file
@@ -147,6 +164,11 @@ def load_account_details():
             for line in lines:
                 line = line.strip()
                 if line.startswith("Account Number:"):
+                    if acc_no is not None and current_account:  # Save previous account
+                        current_account["transactions"] = []
+                        accounts[acc_no] = current_account
+                        init_account_number = max(init_account_number, acc_no + 1)
+
                     acc_no = int(line.split(":")[1].strip())
                     current_account = {}
                 elif line.startswith("Name:"):
@@ -159,11 +181,12 @@ def load_account_details():
                     current_account["phone"] = line.split(":")[1].strip()
                 elif line.startswith("Balance:"):
                     current_account["balance"] = float(line.split(":")[1].strip())
-                elif line.startswith("Transactions:"):
-                    tx_str = line.split(":", 1)[1].strip()
-                    current_account["transactions"] = tx_str.split(", ")
-                    accounts[acc_no] = current_account
-                    init_account_number = max(init_account_number, acc_no + 1)
+
+            # Save the last account after reading
+            if acc_no is not None and current_account:
+                current_account["transactions"] = []
+                accounts[acc_no] = current_account
+                init_account_number = max(init_account_number, acc_no + 1)
 
 
 # Display Main menu after successful authentication
@@ -186,7 +209,7 @@ def display_main_menu():
         elif choice == '3':
             withdraw_money()
         elif choice == '4':
-            print("Check Balance")
+            check_balance()
         elif choice == '5':
             print("Money Transfer")
         elif choice == '6':
@@ -251,7 +274,27 @@ def withdraw_money():
     except ValueError:
         print("Invalid input. Please enter a valid number.")
 
+# Function to check balance
+def check_balance():
+    print("\n--- Check Account Balance ---")
+    try:
+        acc_no = int(get_non_empty_input("Enter your account number: "))
+        if acc_no not in accounts:
+            print("Account not found!")
+            return
+        accountHolder = accounts[acc_no]['name']
+        email = accounts[acc_no]['email']
+        phone = accounts[acc_no]['phone']
+        balance = accounts[acc_no]['balance']
 
+        print("Account No: " + str(acc_no))
+        print("Account Holder: " + accountHolder)
+        print("E mail: " + email)
+        print("Phone: " + phone)
+        print("Balance: " + str(balance))
+
+    except ValueError:
+        print("Invalid input. Please enter a valid account number.")
 
 
 # Entry point of the application
