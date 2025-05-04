@@ -121,7 +121,7 @@ def save_account_details():
             file.write(f"Email: {acc['email']}\n")
             file.write(f"NIC: {acc['nic']}\n")
             file.write(f"Phone: {acc['phone']}\n")
-            file.write(f"Balance: {acc['balance']}\n")
+            file.write(f"Balance: {acc['balance']:.2f}\n")  # Two decimal places
             file.write("\n")
     print("Accounts saved to file.")
 
@@ -131,7 +131,7 @@ def save_transaction_history(account_number,Transaction_type,amount):
             for accNo, acc in accounts.items():
                 file.write(f"Account Number: {account_number}\n")
                 file.write(f"Transaction Name: {Transaction_type}\n")
-                file.write(f"Amount: {amount}\n")
+                file.write(f"Amount: {amount:.2f}\n")
                 file.write("\n")
         print("Transaction History is saved Successfully.")
 

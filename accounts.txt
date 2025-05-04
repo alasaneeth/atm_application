@@ -1,2 +1,7 @@
-
+Account Number: 1000
+Name: saneeth
+Email: alasaneeth22@gmail.com
+NIC: 991323538v
+Phone: 0740822580
+Balance: 2500.00
 
