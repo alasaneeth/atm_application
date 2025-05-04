@@ -3,6 +3,10 @@ Name: saneeth
 Email: alasaneeth22@gmail.com
 NIC: 991323538v
 Phone: 0740822580
-Balance: 1950.0
-Transactions: Account created with initial deposit of 1500.0, Deposited 150.0, Deposited 300.0
-
+Balance: 2000.0
+Account Number: 1001
+Name: amani
+Email: amani@gmail.com
+NIC: 998569874v
+Phone: 087456985
+Balance: 2500.0

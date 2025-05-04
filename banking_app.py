@@ -122,7 +122,6 @@ def save_account_details():
             file.write(f"NIC: {acc['nic']}\n")
             file.write(f"Phone: {acc['phone']}\n")
             file.write(f"Balance: {acc['balance']}\n")
-            file.write(f"Transactions: {', '.join(acc['transactions'])}\n\n")
     print("Accounts saved to file.")
 
     # Save Transaction History
@@ -183,7 +182,7 @@ def display_main_menu():
         elif choice == '2':
             deposit_money()
         elif choice == '3':
-            print("Withdraw Money")
+            withdraw_money()
         elif choice == '4':
             print("Check Balance")
         elif choice == '5':
@@ -212,13 +211,40 @@ def deposit_money():
             return
 
         accounts[acc_no]['balance'] += amount
-        transaction = f"Deposited {amount}"
-        accounts[acc_no]['transactions'].append(transaction)
-
         print(f"Deposit successful. New balance: {accounts[acc_no]['balance']}")
 
         save_account_details()
         save_transaction_history(acc_no, "Deposit", amount)
+
+    except ValueError:
+        print("Invalid input. Please enter a valid number.")
+
+# Withdraw money, update balance and transaction history
+def withdraw_money():
+    print("\n--- Withdraw Money ---")
+    try:
+        acc_no = int(get_non_empty_input("Enter your account number: "))
+        if acc_no not in accounts:
+            print("Account not found!")
+            return
+
+        withdraw_input = get_non_empty_input("Enter amount to withdraw: ")
+        amount = float(withdraw_input)
+
+        if amount <= 0:
+            print("Withdrawal amount must be greater than zero.")
+            return
+
+        if amount > accounts[acc_no]['balance']:
+            print("Insufficient balance for this transaction.")
+            return
+
+        accounts[acc_no]['balance'] -= amount
+
+        print(f"Withdrawal successful. Remaining balance: {accounts[acc_no]['balance']}")
+
+        save_account_details()
+        save_transaction_history(acc_no, "Withdrawal", amount)
 
     except ValueError:
         print("Invalid input. Please enter a valid number.")
