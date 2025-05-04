@@ -114,7 +114,7 @@ def create_new_account():
 
 # Save account details to a file
 def save_account_details():
-    with open("accounts.txt", "a") as file:
+    with open("accounts.txt", "w") as file:
         for accNo, acc in accounts.items():
             file.write(f"Account Number: {accNo}\n")
             file.write(f"Name: {acc['name']}\n")

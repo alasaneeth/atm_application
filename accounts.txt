@@ -1,14 +1,2 @@
-Account Number: 1000
-Name: latheef
-Email: latheef@gmail.com
-NIC: 991323538v
-Phone: 0740822580
-Balance: 3500.0
 
-Account Number: 1000
-Name: saneeth
-Email: alasaneeth22@gmail.com
-NIC: 991323538v
-Phone: 074082582
-Balance: 1500.0
 
