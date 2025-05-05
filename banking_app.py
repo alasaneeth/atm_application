@@ -1,4 +1,6 @@
 import os
+import sys
+
 
 # Variable to auto-generate unique account numbers
 init_account_number = 1000
@@ -215,9 +217,9 @@ def display_main_menu():
         elif choice == '5':
             fund_transfer()
         elif choice == '6':
-            print("Transaction History")
+            display_transaction_history()
         elif choice == '7':
-            print("Exiting system...")
+            exit_application()
             break
         else:
             print("Invalid choice! Please try again.")
@@ -342,6 +344,70 @@ def fund_transfer():
 
     except ValueError:
         print("Invalid input. Please enter valid account numbers and amount.")
+
+# Display Transaction History for a specific account
+def display_transaction_history():
+    print("\n--- Transaction History ---")
+    try:
+        acc_no = int(get_non_empty_input("Enter account number: "))
+        if acc_no not in accounts:
+            print("Account not found!")
+            return
+
+        # Display account details
+        account = accounts[acc_no]
+        print("\nAccount Details:")
+        print(f"Account Number : {acc_no}")
+        print(f"Account Holder : {account['name']}")
+        print(f"Email          : {account['email']}")
+        print(f"Phone          : {account['phone']}")
+        print(f"Current Balance: {account['balance']:.2f}")
+
+        print("\nTransaction History:")
+
+        if not os.path.exists("transactionHistory.txt"):
+            print("No transaction history found.")
+            return
+
+        with open("transactionHistory.txt", "r") as file:
+            lines = file.readlines()
+
+        found = False
+        i = 0
+        while i < len(lines):
+            if lines[i].strip() == f"Account Number: {acc_no}":
+                found = True
+                print("-" * 40)
+                print(lines[i].strip())         # Account Number
+                print(lines[i+1].strip())       # Transaction Name
+                print(lines[i+2].strip())       # Amount
+                print(lines[i+3].strip())       # Date and Time
+                i += 5                          # Skip to next block
+            else:
+                i += 1
+
+        if not found:
+            print("No transactions found for this account.")
+
+    except ValueError:
+        print("Invalid input. Please enter a valid account number.")
+
+    #logout from the application
+import sys
+
+def exit_application():
+    while True:
+        confirm = input("Are you sure you want to exit? (y/n): ").strip().lower()
+        if confirm == 'y':
+            print("\nHave a nice day. Goodbye!")
+            sys.exit()
+        elif confirm == 'n':
+            print("Returning to main menu...")
+            return
+        else:
+            print("Invalid input. Please enter 'y' or 'n'.")
+
+
 
 
 
