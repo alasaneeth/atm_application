@@ -1,48 +1,20 @@
 Account Number: 1000
 Transaction Name: Initial Deposit
-Amount: 2500.00
+Amount: 1500.00
+Date and Time: 2025-05-05 06:37:12
 
 Account Number: 1001
 Transaction Name: Initial Deposit
-Amount: 8500.00
+Amount: 1250.00
+Date and Time: 2025-05-05 06:37:54
+
+Account Number: 1000
+Transaction Name: Transfer Out
+Amount: 25.00
+Date and Time: 2025-05-05 06:42:01
 
 Account Number: 1001
-Transaction Name: Initial Deposit
-Amount: 8500.00
-
-Account Number: 1002
-Transaction Name: Initial Deposit
-Amount: 7500.00
-
-Account Number: 1002
-Transaction Name: Initial Deposit
-Amount: 7500.00
-
-Account Number: 1002
-Transaction Name: Initial Deposit
-Amount: 7500.00
-
-Account Number: 1003
-Transaction Name: Initial Deposit
-Amount: 7400.00
-
-Account Number: 1003
-Transaction Name: Initial Deposit
-Amount: 7400.00
-
-Account Number: 1003
-Transaction Name: Initial Deposit
-Amount: 7400.00
-
-Account Number: 1003
-Transaction Name: Initial Deposit
-Amount: 7400.00
-
-Account Number: 1004
-Transaction Name: Initial Deposit
-Amount: 890.00
-
-Account Number: 1004
-Transaction Name: Deposit
-Amount: 500.00
+Transaction Name: Transfer In
+Amount: 25.00
+Date and Time: 2025-05-05 06:42:01
 

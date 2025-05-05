@@ -1,35 +1,14 @@
 Account Number: 1000
 Name: saneeth
-Email: aaa
-NIC: aaaa
+Email: alasaneeth22@gmail.com
+NIC: 991323538v
 Phone: 0740822580
-Balance: 2500.00
+Balance: 1475.00
 
 Account Number: 1001
-Name: lupsi
-Email: lsss
-NIC: ssss
-Phone: ssss
-Balance: 8500.00
-
-Account Number: 1002
-Name: latheef
-Email: sss
-NIC: www
-Phone: 44587
-Balance: 7500.00
-
-Account Number: 1003
-Name: marjina
-Email: sssdd
-NIC: ee
-Phone: qq
-Balance: 7400.00
-
-Account Number: 1004
-Name: sswe
-Email: ddfd
-NIC: saq
-Phone: qqwe
-Balance: 1390.00
+Name: amani
+Email: amani@gmail.com
+NIC: 88745896v
+Phone: 077920301
+Balance: 1275.00
 
