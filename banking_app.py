@@ -4,6 +4,7 @@ import sys
 
 # Variable to auto-generate unique account numbers
 init_account_number = 1000
+INTEREST_RATE = 0.03  # 3% annual interest
 accounts = {}
 
 
@@ -203,7 +204,8 @@ def display_main_menu():
         print("4. Check Balance")
         print("5. Fund Transfer")
         print("6. Transaction History")
-        print("7. Exit")
+        print("7. Apply Interest")
+        print("8. Exit")
 
         choice = input("Choose an option: ").strip()
         if choice == '1':
@@ -219,6 +221,8 @@ def display_main_menu():
         elif choice == '6':
             display_transaction_history()
         elif choice == '7':
+            apply_interest()
+        elif choice == '8':
             exit_application()
             break
         else:
@@ -392,8 +396,25 @@ def display_transaction_history():
     except ValueError:
         print("Invalid input. Please enter a valid account number.")
 
-    #logout from the application
-import sys
+
+
+def apply_interest():
+    print("\n--- Apply Interest to All Accounts ---")
+    try:
+        for acc_no, acc in accounts.items():
+            interest = acc['balance'] * INTEREST_RATE
+            acc['balance'] += interest
+            acc['transactions'].append(f"Interest of {interest:.2f} applied")
+            save_transaction_history(acc_no, "Interest", interest)
+
+        save_account_details()
+        print("Interest applied to all accounts successfully.")
+
+    except Exception as e:
+        print(f"An error occurred while applying interest: {str(e)}")
+
+
+#Exite from the application
 
 def exit_application():
     while True:
@@ -409,10 +430,12 @@ def exit_application():
 
 
 
-
-
 # Entry point of the application
 if __name__ == "__main__":
-    if user_authentication():
-        load_account_details()  # Load existing account data before showing the menu
-        display_main_menu()
+    try:
+        if user_authentication():
+            load_account_details()
+            display_main_menu()
+    except KeyboardInterrupt:
+        print("\n\nApplication interrupted. Exiting safely...")
+        sys.exit()
